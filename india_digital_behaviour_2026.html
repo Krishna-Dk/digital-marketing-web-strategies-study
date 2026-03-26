@@ -1,0 +1,320 @@
+
+<style>
+.tab-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.2rem}
+.tb{background:none;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:6px 13px;font-size:12px;cursor:pointer;color:var(--color-text-secondary);transition:all .15s}
+.tb.on{background:var(--color-background-info);color:var(--color-text-info);border-color:var(--color-border-info);font-weight:500}
+.pane{display:none}.pane.on{display:block}
+.krow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:1.1rem}
+.k{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.8rem .6rem;text-align:center}
+.k .v{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+.k .l{font-size:11px;color:var(--color-text-secondary);margin-bottom:3px}
+.k .s{font-size:10px;color:var(--color-text-secondary);margin-top:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.ct{font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px}
+.leg{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;font-size:11px;color:var(--color-text-secondary)}
+.ld{width:9px;height:9px;border-radius:2px;display:inline-block}
+</style>
+
+<div style="padding:.5rem 0 1rem">
+<div class="tab-row">
+  <button class="tb on" onclick="sw('time',this)">Time Online</button>
+  <button class="tb" onclick="sw('social',this)">Social Media</button>
+  <button class="tb" onclick="sw('content',this)">Content & Video</button>
+  <button class="tb" onclick="sw('commerce',this)">E-Commerce</button>
+  <button class="tb" onclick="sw('genz',this)">Gen Z Behaviour</button>
+  <button class="tb" onclick="sw('trust',this)">Trust & Privacy</button>
+</div>
+
+<!-- TIME ONLINE -->
+<div id="pane-time" class="pane on">
+  <div class="krow">
+    <div class="k"><div class="l">Daily time online</div><div class="v">6h 49m</div><div class="s">Avg Indian user</div></div>
+    <div class="k"><div class="l">On mobile</div><div class="v">~4h</div><div class="s">58% of online time</div></div>
+    <div class="k"><div class="l">Social media daily</div><div class="v">2h 28m</div><div class="s">7.6 platforms/month</div></div>
+    <div class="k"><div class="l">Video streaming</div><div class="v">1h 43m</div><div class="s">Daily avg</div></div>
+  </div>
+  <div class="two">
+    <div>
+      <div class="ct">How Indians spend their time online (daily minutes)</div>
+      <div style="position:relative;width:100%;height:230px"><canvas id="c-time1"></canvas></div>
+    </div>
+    <div>
+      <div class="ct">Daily online time by generation (hours)</div>
+      <div style="position:relative;width:100%;height:230px"><canvas id="c-time2"></canvas></div>
+      <div class="leg" style="justify-content:center">
+        <span style="display:flex;align-items:center;gap:4px"><span class="ld" style="background:#3266ad"></span>Daily hrs online</span>
+        <span style="display:flex;align-items:center;gap:4px"><span class="ld" style="background:#D85A30"></span>Social media hrs</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:1rem">
+    <div class="ct">Top 5 reasons Indians go online (% of users)</div>
+    <div style="position:relative;width:100%;height:160px"><canvas id="c-time3"></canvas></div>
+  </div>
+</div>
+
+<!-- SOCIAL MEDIA -->
+<div id="pane-social" class="pane">
+  <div class="krow">
+    <div class="k"><div class="l">Social media users</div><div class="v">500M</div><div class="s">34.1% of population</div></div>
+    <div class="k"><div class="l">5-yr user growth</div><div class="v">+53.4%</div><div class="s">320M (2020) → 500M</div></div>
+    <div class="k"><div class="l">Platforms per user</div><div class="v">7.6</div><div class="s">Active per month</div></div>
+    <div class="k"><div class="l">Ad spend (social)</div><div class="v">$1.47B</div><div class="s">Projected 2024</div></div>
+  </div>
+  <div class="two">
+    <div>
+      <div class="ct">Platform reach — % of Indian internet users</div>
+      <div style="position:relative;width:100%;height:240px"><canvas id="c-soc1"></canvas></div>
+    </div>
+    <div>
+      <div class="ct">Favourite platform (% calling it #1)</div>
+      <div style="position:relative;width:100%;height:240px"><canvas id="c-soc2"></canvas></div>
+      <div class="leg" style="justify-content:center">
+        <span style="display:flex;align-items:center;gap:4px"><span class="ld" style="background:#D85A30"></span>Instagram 38.3%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span class="ld" style="background:#3266ad"></span>WhatsApp 26.2%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span class="ld" style="background:#1D9E75"></span>Facebook 13.3%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span class="ld" style="background:#EF9F27"></span>YouTube 12.4%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span class="ld" style="background:#73726c"></span>Others 9.8%</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:.9rem">
+    <div class="ct">Why Indians use social media (% of users)</div>
+    <div style="position:relative;width:100%;height:150px"><canvas id="c-soc3"></canvas></div>
+  </div>
+</div>
+
+<!-- CONTENT & VIDEO -->
+<div id="pane-content" class="pane">
+  <div class="krow">
+    <div class="k"><div class="l">Short-video users</div><div class="v">600M+</div><div class="s">Surpassed 2025 est.</div></div>
+    <div class="k"><div class="l">OTT subscribers</div><div class="v">600M+</div><div class="s">Expected by 2025</div></div>
+    <div class="k"><div class="l">YouTube reach</div><div class="v">491M</div><div class="s">All social users/month</div></div>
+    <div class="k"><div class="l">Video of traffic</div><div class="v">83%</div><div class="s">Global internet traffic</div></div>
+  </div>
+  <div class="two">
+    <div>
+      <div class="ct">Content type preferences — Indian users (%)</div>
+      <div style="position:relative;width:100%;height:230px"><canvas id="c-con1"></canvas></div>
+    </div>
+    <div>
+      <div class="ct">Video format preference — share of viewers</div>
+      <div style="position:relative;width:100%;height:230px"><canvas id="c-con2"></canvas></div>
+      <div class="leg" style="justify-content:center">
+        <span style="display:flex;align-items:center;gap:4px"><span class="ld" style="background:#534AB7"></span>Short-form (&lt;60s) 72%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span class="ld" style="background:#1D9E75"></span>Mid-form (1–10m) 18%</span>
+        <span style="display:flex;align-items:center;gap:4px"><span class="ld" style="background:#EF9F27"></span>Long-form (&gt;10m) 10%</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:.9rem">
+    <div class="ct">Top OTT / streaming platform usage (% of Indian internet users)</div>
+    <div style="position:relative;width:100%;height:150px"><canvas id="c-con3"></canvas></div>
+  </div>
+</div>
+
+<!-- E-COMMERCE -->
+<div id="pane-commerce" class="pane">
+  <div class="krow">
+    <div class="k"><div class="l">Online shoppers</div><div class="v">270M</div><div class="s">2nd largest globally</div></div>
+    <div class="k"><div class="l">E-retail GMV</div><div class="v">$60B</div><div class="s">2024 value</div></div>
+    <div class="k"><div class="l">Digital payments</div><div class="v">555M</div><div class="s">Users, $255B value</div></div>
+    <div class="k"><div class="l">E-retail by 2030</div><div class="v">$190B</div><div class="s">18%+ CAGR</div></div>
+  </div>
+  <div class="two">
+    <div>
+      <div class="ct">Top online shopping categories — spend ($ billion)</div>
+      <div style="position:relative;width:100%;height:240px"><canvas id="c-ec1"></canvas></div>
+    </div>
+    <div>
+      <div class="ct">E-commerce behaviour factors — importance to shoppers (%)</div>
+      <div style="position:relative;width:100%;height:240px"><canvas id="c-ec2"></canvas></div>
+    </div>
+  </div>
+  <div style="margin-top:.9rem">
+    <div class="ct">Emerging commerce models — adoption level (India 2025)</div>
+    <div style="position:relative;width:100%;height:150px"><canvas id="c-ec3"></canvas></div>
+  </div>
+</div>
+
+<!-- GEN Z -->
+<div id="pane-genz" class="pane">
+  <div class="krow">
+    <div class="k"><div class="l">Gen Z = % of social users</div><div class="v">40%</div><div class="s">Disproportionate value</div></div>
+    <div class="k"><div class="l">Daily short-video</div><div class="v">3h+</div><div class="s">vs 2h 30m avg</div></div>
+    <div class="k"><div class="l">Spending power</div><div class="v">₹1.2T</div><div class="s">Annual est.</div></div>
+    <div class="k"><div class="l">Video under 60s pref.</div><div class="v">72%</div><div class="s">Gen Z preference</div></div>
+  </div>
+  <div class="two">
+    <div>
+      <div class="ct">Daily social media time by generation (hours)</div>
+      <div style="position:relative;width:100%;height:220px"><canvas id="c-gz1"></canvas></div>
+    </div>
+    <div>
+      <div class="ct">What Gen Z values when engaging with brands online</div>
+      <div style="position:relative;width:100%;height:220px"><canvas id="c-gz2"></canvas></div>
+    </div>
+  </div>
+  <div style="margin-top:.9rem">
+    <div class="ct">Top platforms for Gen Z in India (daily active reach, % of Gen Z users)</div>
+    <div style="position:relative;width:100%;height:140px"><canvas id="c-gz3"></canvas></div>
+  </div>
+</div>
+
+<!-- TRUST & PRIVACY -->
+<div id="pane-trust" class="pane">
+  <div class="krow">
+    <div class="k"><div class="l">AI adoption (business)</div><div class="v">77%</div><div class="s">Improved satisfaction</div></div>
+    <div class="k"><div class="l">Research before buy</div><div class="v">78%</div><div class="s">Go online first</div></div>
+    <div class="k"><div class="l">Digital ad spend</div><div class="v">44%</div><div class="s">of total ad budgets</div></div>
+    <div class="k"><div class="l">Privacy concern rise</div><div class="v">High</div><div class="s">Key brand challenge</div></div>
+  </div>
+  <div class="two">
+    <div>
+      <div class="ct">Consumer trust factors for digital brands (% rating as important)</div>
+      <div style="position:relative;width:100%;height:230px"><canvas id="c-tr1"></canvas></div>
+    </div>
+    <div>
+      <div class="ct">Digital advertising spend — India ($ billion)</div>
+      <div style="position:relative;width:100%;height:230px"><canvas id="c-tr2"></canvas></div>
+    </div>
+  </div>
+  <div style="margin-top:.9rem">
+    <div class="ct">Influencer marketing effectiveness — % of Indian brands reporting positive ROI</div>
+    <div style="position:relative;width:100%;height:140px"><canvas id="c-tr3"></canvas></div>
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const reg = {};
+function sw(id, btn) {
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('pane-'+id).classList.add('on');
+  btn.classList.add('on');
+  buildCharts(id);
+}
+
+function mk(id, type, labels, datasets, opts={}) {
+  if (reg[id]) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  reg[id] = new Chart(el, {
+    type, data: { labels, datasets },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, ...opts }
+  });
+}
+
+function buildCharts(tab) {
+  if (tab==='time') {
+    mk('c-time1','bar',
+      ['Social media','Video streaming','Browsing/search','Messaging','Music','Online shopping','News'],
+      [{data:[148,103,82,65,42,28,20],backgroundColor:['#3266ad','#534AB7','#1D9E75','#D85A30','#EF9F27','#1D9E75','#73726c'],borderRadius:4,borderSkipped:false}],
+      {scales:{x:{ticks:{font:{size:10},maxRotation:30},grid:{display:false}},y:{title:{display:true,text:'Minutes/day',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}}}}
+    );
+    mk('c-time2','bar',
+      ['Gen Z (16–24)','Millennials (25–34)','Gen X (35–44)','Baby Boomers 45+'],
+      [
+        {label:'Daily hrs online',data:[8.5,7.2,6.1,4.4],backgroundColor:'rgba(50,102,173,0.8)',borderRadius:4,borderSkipped:false},
+        {label:'Social media hrs',data:[3.1,2.8,2.0,1.8],backgroundColor:'rgba(216,90,48,0.8)',borderRadius:4,borderSkipped:false}
+      ],
+      {scales:{x:{ticks:{font:{size:10}},grid:{display:false}},y:{ticks:{font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}}}}
+    );
+    mk('c-time3','bar',
+      ['Find information','Stay in touch','Watch videos','Education / learning','Work / business'],
+      [{data:[52.2,50.5,50.4,43.3,35.1],backgroundColor:'#3266ad',borderRadius:4,borderSkipped:false}],
+      {indexAxis:'y',scales:{x:{min:0,max:60,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}},y:{ticks:{font:{size:10}},grid:{display:false}}}}
+    );
+  }
+  if (tab==='social') {
+    mk('c-soc1','bar',
+      ['WhatsApp','Instagram','Facebook','Telegram','Snapchat','YouTube','LinkedIn','X (Twitter)'],
+      [{data:[80.8,77.9,67.8,58.1,46.9,91,11.6,24.3],backgroundColor:['#25D366','#E1306C','#1877F2','#229ED9','#FFFC00','#FF0000','#0077B5','#1DA1F2'].map(c=>c),borderRadius:4,borderSkipped:false}],
+      {indexAxis:'y',scales:{x:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}},y:{ticks:{font:{size:10}},grid:{display:false}}}}
+    );
+    mk('c-soc2','doughnut',
+      ['Instagram 38.3%','WhatsApp 26.2%','Facebook 13.3%','YouTube 12.4%','Others 9.8%'],
+      [{data:[38.3,26.2,13.3,12.4,9.8],backgroundColor:['#D85A30','#3266ad','#1D9E75','#EF9F27','#73726c'],borderWidth:2,borderColor:'var(--color-background-primary)',hoverOffset:6}],
+      {cutout:'62%'}
+    );
+    mk('c-soc3','bar',
+      ['Keep in touch','Read news','Entertainment','Find products','Share content','Professional net.'],
+      [{data:[41.9,32,26.4,22.1,18.7,14.2],backgroundColor:'#534AB7',borderRadius:4,borderSkipped:false}],
+      {indexAxis:'y',scales:{x:{min:0,max:50,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}},y:{ticks:{font:{size:10}},grid:{display:false}}}}
+    );
+  }
+  if (tab==='content') {
+    mk('c-con1','bar',
+      ['Entertainment','Short video','Music / audio','News & current affairs','Sports','Education','Comedy / memes','Gaming streams'],
+      [{data:[54.5,61,52,48,38,43,44,29],backgroundColor:'#3266ad',borderRadius:4,borderSkipped:false}],
+      {scales:{x:{ticks:{font:{size:10},maxRotation:35},grid:{display:false}},y:{min:0,max:70,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}}}}
+    );
+    mk('c-con2','doughnut',
+      ['Short-form (<60s) 72%','Mid-form (1–10m) 18%','Long-form (>10m) 10%'],
+      [{data:[72,18,10],backgroundColor:['#534AB7','#1D9E75','#EF9F27'],borderWidth:2,borderColor:'var(--color-background-primary)',hoverOffset:6}],
+      {cutout:'60%'}
+    );
+    mk('c-con3','bar',
+      ['YouTube','Netflix','Disney+ Hotstar','Amazon Prime','JioCinema','MX Player','Spotify','Gaana'],
+      [{data:[68,28,38,32,35,24,42,38],backgroundColor:['#FF0000','#E50914','#006E99','#00A8E0','#0066FF','#FF6B35','#1DB954','#FF6600'],borderRadius:4,borderSkipped:false}],
+      {scales:{x:{ticks:{font:{size:10},maxRotation:30},grid:{display:false}},y:{min:0,max:80,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}}}}
+    );
+  }
+  if (tab==='commerce') {
+    mk('c-ec1','bar',
+      ['Food & grocery','Fashion','Electronics','Beauty & personal care','Home & furniture','Pharma & health','Books & education'],
+      [{data:[17.2,12.8,11.5,6.4,4.2,3.8,1.2],backgroundColor:['#1D9E75','#D85A30','#3266ad','#EF9F27','#534AB7','#73726c','#5DCAA5'],borderRadius:4,borderSkipped:false}],
+      {scales:{x:{ticks:{font:{size:10},maxRotation:35},grid:{display:false}},y:{title:{display:true,text:'$ Billion',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}}}}
+    );
+    mk('c-ec2','bar',
+      ['Price / discounts','Fast delivery','Product reviews','Easy returns','Brand trust','Cashback / offers','UPI payment option'],
+      [{data:[82,74,71,68,64,61,58],backgroundColor:'#1D9E75',borderRadius:4,borderSkipped:false}],
+      {indexAxis:'y',scales:{x:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}},y:{ticks:{font:{size:10}},grid:{display:false}}}}
+    );
+    mk('c-ec3','bar',
+      ['Quick commerce','Social commerce','D2C brands','Live commerce','ONDC marketplace'],
+      [{data:[72,52,68,34,28],backgroundColor:'#534AB7',borderRadius:4,borderSkipped:false}],
+      {scales:{x:{ticks:{font:{size:10}},grid:{display:false}},y:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}}}}
+    );
+  }
+  if (tab==='genz') {
+    mk('c-gz1','bar',
+      ['Gen Z (16–24)','Millennials (25–34)','Gen X (35–44)','Baby Boomers (45+)'],
+      [{data:[3.1,2.8,2.0,1.75],backgroundColor:['#534AB7','#3266ad','#1D9E75','#73726c'],borderRadius:4,borderSkipped:false}],
+      {scales:{x:{ticks:{font:{size:10}},grid:{display:false}},y:{title:{display:true,text:'Hrs/day on social',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}}}}
+    );
+    mk('c-gz2','bar',
+      ['Authenticity','Humour & relatability','Regional language','Sustainability','Gamification','Influencer collab','AR / interactive'],
+      [{data:[78,72,65,54,48,62,41],backgroundColor:'#D85A30',borderRadius:4,borderSkipped:false}],
+      {indexAxis:'y',scales:{x:{min:0,max:90,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}},y:{ticks:{font:{size:10}},grid:{display:false}}}}
+    );
+    mk('c-gz3','bar',
+      ['Instagram Reels','YouTube Shorts','WhatsApp','Snapchat','Moj / Josh','ShareChat'],
+      [{data:[81,74,68,52,38,31],backgroundColor:['#E1306C','#FF0000','#25D366','#FFFC00','#FF6B35','#3266ad'],borderRadius:4,borderSkipped:false}],
+      {scales:{x:{ticks:{font:{size:10}},grid:{display:false}},y:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}}}}
+    );
+  }
+  if (tab==='trust') {
+    mk('c-tr1','bar',
+      ['Data security','Transparent pricing','User reviews / social proof','Brand authenticity','Easy grievance redress','Regional language support','AI personalization'],
+      [{data:[84,78,74,68,62,55,48],backgroundColor:'#1D9E75',borderRadius:4,borderSkipped:false}],
+      {indexAxis:'y',scales:{x:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}},y:{ticks:{font:{size:10}},grid:{display:false}}}}
+    );
+    mk('c-tr2','line',
+      ['FY20','FY21','FY22','FY23','FY24','FY25*'],
+      [{data:[2.39,3.02,3.84,4.90,6.46,8.1],borderColor:'#534AB7',backgroundColor:'rgba(83,74,183,0.1)',fill:true,borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#534AB7',tension:0.35}],
+      {scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{title:{display:true,text:'$ Billion',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}}}}
+    );
+    mk('c-tr3','bar',
+      ['Micro-influencers','Macro-influencers','Celebrity brand deals','UGC campaigns','Meme marketing'],
+      [{data:[82,74,61,78,68],backgroundColor:['#3266ad','#534AB7','#D85A30','#1D9E75','#EF9F27'],borderRadius:4,borderSkipped:false}],
+      {scales:{x:{ticks:{font:{size:10}},grid:{display:false}},y:{min:0,max:100,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(128,128,128,0.12)'}}}}
+    );
+  }
+}
+
+buildCharts('time');
+</script>
